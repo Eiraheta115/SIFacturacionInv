@@ -6,14 +6,14 @@
         <h1>Lista de proveedores</h1>
         <ul>
           {% for proveedores in object_list %}
-          <li><p>Proveedor ID: <a href="{% url "templates:proveedores_edit" clientes.id %}">{{ clientes.id }}</a></p>
+          <li><p>Proveedor ID: <a href="{% url "FacturacionInv:proveedores_edit" clientes.id %}">{{ clientes.id }}</a></p>
           <p>Nombre: {{ proveedores.nombre }}</p> <br>
-            <a href="{% url "templates:proveedores_delete" clientes.id %}">Eliminar</a>
+            <a href="{% url "FacturacionInv:proveedores_delete" clientes.id %}">Eliminar</a>
           </li>
           {% endfor %}
         </ul>
 
-        <a href="{% url "templates:proveedores_new" %}">Ingresar nuevo cliente.</a>
+        <a href="{% url "FacturacionInv:proveedores_new" %}">Ingresar nuevo cliente.</a>
     </div>
 
 {% endblock %}
