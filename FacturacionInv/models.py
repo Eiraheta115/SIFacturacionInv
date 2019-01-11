@@ -17,6 +17,9 @@ class Bodegas(models.Model):
         managed = False
         db_table = 'bodegas'
 
+    def __int__(self):
+        return self.nombre
+
 
 class Categorias(models.Model):
     idcategoria = models.AutoField(primary_key=True)
@@ -27,6 +30,9 @@ class Categorias(models.Model):
     class Meta:
         managed = False
         db_table = 'categorias'
+
+    def __str__(self):
+        return self.nombre
 
 
 class Clientes(models.Model):
