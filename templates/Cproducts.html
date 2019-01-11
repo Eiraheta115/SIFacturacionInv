@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+
+{% block contenido %}
+
+    <h1>Nuevo Producto</h1>
+    <hr class="my-4">
+
+    <form method="POST">
+        {% csrf_token %}
+      <fieldset>
+          <div class="row">
+            <div class="form-group col-lg-6">
+                <label for="nombre">Nombre de Producto</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Enter">
+            </div>
+            <div class="form-group col-lg-6">
+                <label for="marca">Marca</label>
+                <input type="text" class="form-control" name="marca" id="marca" placeholder="Enter">
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label for="descripcion">Descripcion Producto</label>
+              <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripcion Producto">
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-4">
+                <label for="codigo">Codigo de Producto</label>
+                <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Enter">
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="categoria">Categoria</label>
+                <select class="form-control" name="categoria" id="categoria">
+                    {% for category in categorias %}
+                    <option value="{{category.idcategoria}}">{{category}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="bodega">Bodega</label>
+                <select class="form-control" name="bodega" id="bodega">
+                    {% for cellar in bodegas %}
+                    <option value="{{cellar.idbodega}}">{{cellar}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-4">
+                <label for="maxima">Existencia Maxima</label>
+                <input type="number" class="form-control" name="maxima" id="maxima" placeholder="Enter">
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="minima">Existencia Minima</label>
+                <input type="number" class="form-control" name="minima" id="minima" placeholder="Enter">
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="actual">Existencia Actual</label>
+                <input type="number" class="form-control" name="actual" id="actual" placeholder="Enter">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Guardar Producto</button>
+      </fieldset>
+    </form>
+
+{% endblock contenido %}
