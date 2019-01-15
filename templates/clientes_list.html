@@ -1,0 +1,19 @@
+{% extends 'templates/index.html' %}
+
+{% block contenido %}
+
+    <div class="container">
+        <h1>Lista de clientes</h1>
+        <ul>
+          {% for clientes in object_list %}
+          <li><p>Cliente ID: <a href="{% url "FacturacionInv:clientes_edit" clientes.id %}">{{ clientes.id }}</a></p>
+          <p>Nombre: {{ clientes.nombre }}</p> <br>
+            <a href="{% url "FacturacionInv:clientes_delete" clientes.id %}">Eliminar</a>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <a href="{% url "FacturacionInv:clientes_new" %}">Ingresar nuevo cliente.</a>
+    </div>
+
+{% endblock %}
