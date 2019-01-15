@@ -190,9 +190,9 @@ class Movimientos(models.Model):
     bodega2 = models.ForeignKey(Bodegas, models.DO_NOTHING, db_column='bodega2', related_name='bodega2')
     codproducto = models.ForeignKey('Productos', models.DO_NOTHING, db_column='codproducto')
     tmov = models.ForeignKey('Tipomovimientos', models.DO_NOTHING, db_column='tmov')
-    idfactura = models.ForeignKey(Facturas, models.DO_NOTHING, db_column='idfactura')
-    idtdoctransferencia = models.ForeignKey('Tipodocumentos', models.DO_NOTHING, db_column='idtdoctransferencia')
-    idlibcom = models.ForeignKey(Librocompras, models.DO_NOTHING, db_column='idlibcom')
+    idfactura = models.ForeignKey(Facturas, models.DO_NOTHING, db_column='idfactura', null=True)
+    idtdoctransferencia = models.ForeignKey('Tipodocumentos', models.DO_NOTHING, db_column='idtdoctransferencia', null=True)
+    idlibcom = models.ForeignKey(Librocompras, models.DO_NOTHING, db_column='idlibcom', null=True)
 
     class Meta:
         managed = False
@@ -214,6 +214,9 @@ class Productos(models.Model):
     class Meta:
         managed = False
         db_table = 'productos'
+
+    def __str__(self):
+        return self.codigoprod
 
 
 class Proveedores(models.Model):

@@ -1,0 +1,129 @@
+{% extends "index.html" %}
+
+{% block contenido %}
+
+<br>
+<h1>Nueva Venta</h1>
+<br>
+<form method="POST">
+  <fieldset class="row">
+    <br>
+    <legend>Ingrese los datos:</legend>
+  <fieldset>
+    <div class="form-group row" >
+      <div class="col-sm-5">
+        <label for="codigoprod">Código del producto: </label>
+        <input type="text" class="form-control" id="codigoprod" placeholder="Código">
+      </div>
+      <div class="col-sm-4">
+        <br>
+        <button type="submit" class="btn btn-primary">Buscar Producto</button>
+        <br>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-5">
+        <label for="descripcion">Descripción: </label>
+        <input type="text" class="form-control" id="descripcionproducto" placeholder="Descripción">
+        <label for="cantidad">Cantidad: </label>
+        <input type="text" class="form-control" id="cantidad" placeholder="0">
+      </div>
+      <div class="col-sm-4">
+        <label for="marca">Marca del producto: </label>
+        <input type="text" class="form-control" id="marcaproducto" placeholder="Marca">
+        <label for="fecha">Fecha: </label>
+        <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha">
+        <br>
+        <button type="submit" class="btn btn-primary">Agregar Producto</button>
+      </div>
+    </div>
+  </fieldset>
+
+  <table class="table table-hover" style="margin-top: 30px">
+    <thead>
+      <tr>
+        <th scope="col">Cod</th>
+        <th scope="col">Descrpción</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">Ventas Exentas</th>
+        <th scope="col">Ventas Grabadas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active">
+        <th scope="row">-</th>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table> 
+</fieldset>
+
+<fieldset>
+  <div class="form-group row" style="margin-top: 30px">
+      <div class="col-sm-5">
+        <label for="total">Total: </label>
+        <input type="number" class="form-control" id="total" placeholder="0.00">
+      </div>
+      <div class="col-sm-4">
+        <label for="iva">IVA: </label>
+        <input type="number" class="form-control" id="iva" placeholder="0.00">
+        <br>
+      </div>
+    </div>
+</fieldset>
+
+<fieldset>
+  <h4>Cliente</h4>
+  <div class="form-group row" >
+      <div class="col-sm-5">
+        <label for="codigocli">Cod Cliente: </label>
+        <input type="text" class="form-control" id="codigocli" placeholder="Cliente">
+      </div>
+      <div class="col-sm-4">
+        <br>
+        <button type="submit" class="btn btn-primary">Agregar Cliente</button>
+        <br>
+      </div>
+    </div>
+</fieldset>
+
+<fieldset style="margin-top: 30px">
+  <h4>Crédito Fiscal</h4>
+  <div class="form-group row" >
+      <div class="col-sm-5">
+        <label for="subtotal">Sub-Total: </label>
+        <input type="text" class="form-control" id="subtotal" placeholder="0.00">
+        <label for="totalcredito">Total Crédito Fiscal: </label>
+        <input type="text" class="form-control" id="totalcredito" placeholder="0.00">
+      </div>
+      <div class="col-sm-4">
+        <label for="retencion">Retención 1%: </label>
+        <input type="text" class="form-control" id="retencion" placeholder="0.00">
+        <br>
+        <button type="submit" class="btn btn-primary">Procesar Venta</button>
+        <br>
+      </div>
+    </div>
+</fieldset>
+
+<fieldset style="margin-top: 30px">
+  <h4>Factura</h4>
+  <div class="form-group row" >
+      <div class="col-sm-5">
+        <label for="total">Total: </label>
+        <input type="text" class="form-control" id="totalfactura" placeholder="0.00">
+      </div>
+      <div class="col-sm-4">
+        <br>
+        <button type="submit" class="btn btn-primary">Procesar Venta</button>
+      </div>
+    </div>
+</fieldset>
+</form>
+
+{% endblock contenido %}

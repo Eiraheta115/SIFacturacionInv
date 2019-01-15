@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+{% block contenido %}
+
+<br>
+<h1>Nueva Venta</h1>
+<br>
+<form method="POST">
+  {% csrf_token %}
+  <fieldset>
+    <div class="form-group row">
+      <div class="col-sm-5">
+        <label for="codprod">Codigo del producto: </label>
+        <input type="text" class="form-control" name="codprod" id="codprod" placeholder="Codigo">
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Buscar Producto</button>
+        <br>
+        <br>
+      </div>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <td>Codigo</td>
+            <td>Nombre</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% if new %}
+          {% for n in new %}
+          <tr>
+            <td>{{ n.codigoprod }}</td>
+            <td>{{ n.nombre }}</td>
+          </tr>
+          {% endfor %}
+          {% else %}
+          <h1>no</h1>
+          {% endif %}
+        </tbody>
+      </table>
+  </fieldset>
+
+
+{% endblock contenido %}
