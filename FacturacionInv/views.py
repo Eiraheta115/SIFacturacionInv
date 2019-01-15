@@ -5,6 +5,7 @@ from .forms import ClientesForm
 from .forms import ProveedoresForm
 from .models import Clientes
 from django.forms import ModelForm
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -128,3 +129,15 @@ def proveedores_delete(request, pk, template_name='../templates/proveedores_dele
         post.delete()
         return redirect('templates:proveedores_list')
     return render(request, template_name, {'object': post})
+
+class BodegasList(ListView):
+    model = Bodegas
+    template_name = "../templates/bodegaslist.html"
+
+class CategoriasList(ListView):
+    model = Categorias
+    template_name = "../templates/categorialist.html"
+
+class ProductosList(ListView):
+    model = Productos
+    template_name = "../templates/productlist.html"

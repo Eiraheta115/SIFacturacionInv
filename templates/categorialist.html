@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block contenido %}
+
+<h1>Categorias</h1>
+<hr class="my-4">
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Codigo</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripcion</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if object_list %}
+    {% for bodega in object_list %}
+    <tr>
+      <th scope="row">{{ bodega.codigo }}</th>
+      <th scope="row">{{ bodega.nombre }}</th>
+      <td>{{ bodega.descripcion }}</td>
+    </tr>
+  {% endfor %}
+
+  {% else %}
+    <h1>No hay registros</h1>
+  {% endif %}
+  </tbody>
+</table>
+
+{% endblock contenido %}
