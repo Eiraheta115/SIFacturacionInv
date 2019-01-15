@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block contenido %}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script>
+$(document).ready(function() {
+    $('.datepicker').datepicker();
+});
+</script>
+<br>
+<h1>Listado de ventas realizadas</h1>
+<br>
+<form method="POST">
+  {% csrf_token %}
+  <fieldset>
+    <div class="form-group row">
+      <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha de inicio:</label>
+        <div class="col-sm-10">
+          {{ form.start_date }}
+        </div>
+      </div>
+      <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha fin:</label>
+        <div class="col-sm-10">
+          {{ form.end_date }}
+        </div>
+      </div>
+      
+  </fieldset>
+</form>
+
+{% endblock contenido %}

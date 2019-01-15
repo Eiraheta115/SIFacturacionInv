@@ -1,5 +1,6 @@
 from django import forms
 from .models import *
+from functools import partial
 
 class ClientesForm(forms.ModelForm):
 
@@ -21,3 +22,8 @@ class newBodegaForm(forms.ModelForm):
             'descripcion',
         ]
 
+DateInput = partial(forms.DateInput, {'class': 'datepicker'})
+
+class DateRangeForm(forms.Form):
+    start_date = forms.DateField(widget=DateInput())
+    end_date = forms.DateField(widget=DateInput())
