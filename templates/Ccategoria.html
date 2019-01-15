@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+
+{% block contenido %}
+
+
+    <h1>Nueva Categoría</h1>
+    <hr class="my-4">
+
+    <form method="POST">
+        {% csrf_token %}
+      <fieldset>
+          <div class="row">
+            <div class="form-group col-lg-6">
+                <label for="nombre">Nombre de Categoria</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Enter">
+            </div>
+            <div class="form-group col-lg-6">
+                <label for="codigo">Codigo</label>
+                <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Enter">
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label for="descripcion">Descripcion</label>
+              <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripcion Categoria">
+          </div>
+
+
+          <button type="submit" class="btn btn-primary">Guardar Categoria</button>
+      </fieldset>
+    </form>
+
+
+{% endblock contenido %}
