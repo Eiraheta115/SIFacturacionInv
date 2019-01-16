@@ -10,24 +10,55 @@ $(document).ready(function() {
 });
 </script>
 <br>
-<h1>Listado de ventas realizadas</h1>
+<h1>Listado de ventas a consumidor final</h1>
 <br>
-<form method="POST">
+<form action="{% url "FacturacionInv:getVentas" %}" method="POST">
   {% csrf_token %}
   <fieldset>
     <div class="form-group row">
-      <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha de inicio:</label>
-        <div class="col-sm-10">
-          {{ form.start_date }}
-        </div>
-      </div>
-      <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha fin:</label>
-        <div class="col-sm-10">
-          {{ form.end_date }}
-        </div>
-      </div>
-      
+      <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha de inicio:</label> {{ form.start_date }}
+      <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha fin:</label> {{ form.end_date }}
+      <button type="submit" class="btn btn-primary">Mostrar ventas realizadas</button>
+    </div>
   </fieldset>
 </form>
 
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Exenta</th>
+      <th scope="col">Afecta</th>
+      <th scope="col">Exportación</th>
+      <th scope="col">ID factura</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if ventas %}
+    {% for v in ventas %}
+    {% totalExenta+=v.exenta %}
+    {% totalExportacion+=v.exportacion %}
+    {% totalVentas+=v.total %}
+    <tr>
+      <td>{{v.idlibvencf}}</td>
+      <td>{{v.fecha}}</td>
+      <td>{{v.exenta}}</td>
+      <td>{{v.afecta}}</td>
+      <td>{{v.exportacion}}</td>
+      <td>{{v.facturas_idfactura}}</td>
+      <td>{{v.total}}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <h1>Aún no hay ventas realizadas.</h1>
+    {% endif %}
+  </tbody>
+</table>
+<br> <br>
+
+<label for="totalExenta" class="col-sm-2 col-form-label">Total exenta:</label> {{totalExenta}}
+<label for="totalExportacion" class="col-sm-2 col-form-label">Total Exportación:</label> {{totalExportacion}}
+<label for="totalVentas" class="col-sm-2 col-form-label">Total "Ventas totales":</label> {{totalVentas}}
 {% endblock contenido %}
