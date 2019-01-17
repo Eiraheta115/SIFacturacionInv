@@ -1,26 +1,87 @@
 {% extends "index.html" %}
 
+{% block title %}
+      <title>Nueva</title>
+{% endblock title %}
+
 {% block contenido %}
 
 <br>
 <h1>Nueva Venta</h1>
 <br>
+
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" name="search">
+      <button class="btn btn-primary" type="submit">Buscar Producto</button>
+    </form>
+
+  <table class="table table-hover" style="margin-top: 30px">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cod</th>
+        <th scope="col">Descrpción</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">Accion</th>   
+      </tr>
+    </thead>
+    <tbody>
+      {% if productos %}
+      {% for p in productos %}
+      <tr class="table-active">
+        <th scope="row">{{ p.nombre }}</th>
+        <td>{{ p.codigoprod }}</td>
+        <td>{{ p.descripcion }}</td>
+        <td><input type="number" class="form-control" id="cantidad" placeholder="0"></td>
+        <td><input type="number" class="form-control" id="precio_unit" placeholder="0.00"></td>
+        <td><button class="btn btn-primary" type="submit">Agregar Producto</button></td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h3>No hay registros</h3>
+      {% endif %}
+    </tbody>
+  </table>
+
+
+  <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" name="search_client">
+      <button class="btn btn-primary" type="submit">Buscar Cliente</button>
+    </form>
+
+
+
+<table class="table table-hover" style="margin-top: 30px">
+    <thead>
+      <tr>
+        <th scope="col">Cod</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">DUI</th>
+        <th scope="col">Accion</th>   
+      </tr>
+    </thead>
+    <tbody>
+      {% if cliente %}
+      {% for p in cliente %}
+      <tr class="table-active">
+        <th scope="row">{{ p.codigocli }}</th>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.dui }}</td>
+        <td><button class="btn btn-primary" type="submit">Agregar Cliente</button></td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h3>No hay registros</h3>
+      {% endif %}
+    </tbody>
+  </table>
+
 <form method="POST">
   <fieldset class="row">
-    <br>
-    <legend>Ingrese los datos:</legend>
   <fieldset>
-    <div class="form-group row" >
-      <div class="col-sm-5">
-        <label for="codigoprod">Código del producto: </label>
-        <input type="text" class="form-control" id="codigoprod" placeholder="Código">
-      </div>
-      <div class="col-sm-4">
-        <br>
-        <button type="submit" class="btn btn-primary">Buscar Producto</button>
-        <br>
-      </div>
-    </div>
+    
     <div class="form-group row">
       <div class="col-sm-5">
         <label for="descripcion">Descripción: </label>
@@ -33,34 +94,9 @@
         <input type="text" class="form-control" id="marcaproducto" placeholder="Marca">
         <label for="fecha">Fecha: </label>
         <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha">
-        <br>
-        <button type="submit" class="btn btn-primary">Agregar Producto</button>
       </div>
     </div>
-  </fieldset>
-
-  <table class="table table-hover" style="margin-top: 30px">
-    <thead>
-      <tr>
-        <th scope="col">Cod</th>
-        <th scope="col">Descrpción</th>
-        <th scope="col">Cantidad</th>
-        <th scope="col">Precio Unitario</th>
-        <th scope="col">Ventas Exentas</th>
-        <th scope="col">Ventas Grabadas</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="table-active">
-        <th scope="row">-</th>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-    </tbody>
-  </table> 
+  </fieldset> 
 </fieldset>
 
 <fieldset>
@@ -72,21 +108,6 @@
       <div class="col-sm-4">
         <label for="iva">IVA: </label>
         <input type="number" class="form-control" id="iva" placeholder="0.00">
-        <br>
-      </div>
-    </div>
-</fieldset>
-
-<fieldset>
-  <h4>Cliente</h4>
-  <div class="form-group row" >
-      <div class="col-sm-5">
-        <label for="codigocli">Cod Cliente: </label>
-        <input type="text" class="form-control" id="codigocli" placeholder="Cliente">
-      </div>
-      <div class="col-sm-4">
-        <br>
-        <button type="submit" class="btn btn-primary">Agregar Cliente</button>
         <br>
       </div>
     </div>
