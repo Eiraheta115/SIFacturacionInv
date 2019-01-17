@@ -38,9 +38,6 @@ $(document).ready(function() {
   <tbody>
     {% if ventas %}
     {% for v in ventas %}
-    {% totalExenta+=v.exenta %}
-    {% totalExportacion+=v.exportacion %}
-    {% totalVentas+=v.total %}
     <tr>
       <td>{{v.idlibvencf}}</td>
       <td>{{v.fecha}}</td>
@@ -56,6 +53,7 @@ $(document).ready(function() {
     {% endif %}
   </tbody>
 </table>
+
 <br> <br>
 
 <label for="totalExenta" class="col-sm-2 col-form-label">Total exenta:</label> {{totalExenta}}

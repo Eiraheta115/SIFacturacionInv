@@ -7,7 +7,7 @@ from .forms import ProveedoresForm
 from .models import Clientes
 from django.forms import ModelForm
 from django.views.generic import ListView
-
+import datetime
 
 # Create your views here.
 
@@ -53,8 +53,8 @@ def nueva_venta(request):
 		else:
 			idfactncred = null
 			# idtdoc = 2
-		fatura = Facturas(codigo=codigo, fecha=fecha, concepto=concepto, vencimiento=vencimiento, 
-				total=total, exenta=exenta, descuento=descuento, anulado=anulado, impreso=impreso, 
+		fatura = Facturas(codigo=codigo, fecha=fecha, concepto=concepto, vencimiento=vencimiento,
+				total=total, exenta=exenta, descuento=descuento, anulado=anulado, impreso=impreso,
 				idtdoc=idtdoc, idcliente=idcliente, idfactncred=idfactncred)
 		factura.save()
 
@@ -63,12 +63,12 @@ def nueva_venta(request):
 	'''
 
 	movimiento = Movimientos(fecha=fecha, costomovimiento=costomovimiento, costopromedio=costopromedio,
-		concepto=concepto, responsable=responsable, cantidad=cantidad, bodega1=bodega1, bodega2=bodega2, 
-		codproducto=codproducto, tmov=tmov, idfactura=idfactura, idtdoctransferencia=idtdoctransferencia, 
+		concepto=concepto, responsable=responsable, cantidad=cantidad, bodega1=bodega1, bodega2=bodega2,
+		codproducto=codproducto, tmov=tmov, idfactura=idfactura, idtdoctransferencia=idtdoctransferencia,
 		idlibcom=idlibcom)
 	movimiento.save()
 
-	producto = Prodcutos(codigoprod=codigoprod, nombre=nombre, descripcion=descripcionproducto, marca=marcaproducto, 
+	producto = Prodcutos(codigoprod=codigoprod, nombre=nombre, descripcion=descripcionproducto, marca=marcaproducto,
 		existenciamax=existenciamax, existenciamin=existenciamin, idcategoria=idcategoria, idbodega=idbodega)
 	producto.save()
 	'''
@@ -113,7 +113,7 @@ def prueba(request):
 		buscar = request.POST.get("codprod")
 		prods = Productos.objects.filter(codigoprod=buscar)
 		print (prods)
-	
+
 	prods = list()
 	productos = Productos.objects.all()
 	for pr in productos:
@@ -269,3 +269,16 @@ class ProductosList(ListView):
     model = Productos
     template_name = "../templates/productlist.html"
 
+def reporte_ventas(request):
+    template = "../templates/reporte_ventas.html"
+    return render(request, template)
+
+def getVentas(request):
+    template = "../templates/reporte_ventas.html"
+    if request.method == 'POST':
+        f1 = DateRangeForm(request.POST.get("start_date"))
+        f2 = DateRangeForm(request.POST.get("end_date"))
+
+    ventas = Libroventascf.objects.filter(fecha__range=(f1, f2))
+    context = {'ventas':ventas}
+    return render(request, template, context)
