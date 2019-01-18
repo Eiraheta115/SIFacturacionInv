@@ -23,4 +23,5 @@ urlpatterns = [
     path('editar_proveedor', proveedores_update, name='proveedores_edit'),
     path('eliminar_proveedor', proveedores_delete, name='proveedores_delete'),
     path('reporte_ventas', reporte_ventas, name='reporte_ventas'),
+    url(r'^getVentas$', getVentas, name='getVentas'),
 ]

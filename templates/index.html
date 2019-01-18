@@ -1,10 +1,13 @@
 {% load static %}
+{{ form.media }}            {# Adds date-picker required JS and CSS #}
 <!DOCTYPE html>
 <html>
 <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>AdminLTE 2 | Dashboard</title>
+      {% block title %}
+      <title>Inventario</title>
+      {% endblock title %}
       <!-- Tell the browser to be responsive to screen width -->
       <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
       <!-- Bootstrap 3.3.7 -->
@@ -13,7 +16,7 @@
       <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
       <!-- Ionicons -->
       <link rel="stylesheet" href="{% static 'bower_components/Ionicons/css/ionicons.min.css' %}">
-</head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -22,71 +25,6 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-<<<<<<< HEAD
-  <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
-<main>
-  <div class="container">
-    {% block contenido %}
-
-    {% endblock %}
-  </div>
-</main>
-
-
-
-<!-- jQuery 3 -->
-<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
-<!-- Morris.js charts -->
-<script src="{% static 'bower_components/raphael/raphael.min.js' %}"></script>
-<script src="{% static 'bower_components/morris.js/morris.min.js' %}"></script>
-<!-- Sparkline -->
-<script src="{% static 'bower_components/jquery-sparkline/dist/jquery.sparkline.min.js' %}"></script>
-<!-- jvectormap -->
-<script src="{% static 'plugins/jvectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
-<script src="{% static 'plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{% static 'bower_components/jquery-knob/dist/jquery.knob.min.js' %}"></script>
-<!-- daterangepicker -->
-<script src="{% static 'bower_components/moment/min/moment.min.js"></script>
-<script src="{% static 'bower_components/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
-<!-- datepicker -->
-<script src="{% static 'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="{% static 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js' %}"></script>
-<!-- Slimscroll -->
-<script src="{% static 'bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
-<!-- FastClick -->
-<script src="{% static 'bower_components/fastclick/lib/fastclick.js' %}"></script>
-=======
           <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
@@ -121,7 +59,8 @@
         {% endblock %}
     </footer>
 
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </head>
     <!-- jQuery 3 -->
     <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -151,6 +90,5 @@
     <script src="{% static 'bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
     <!-- FastClick -->
     <script src="{% static 'bower_components/fastclick/lib/fastclick.js' %}"></script>
->>>>>>> 70be126d65ab7e4bcbf75e43105e87357139037d
 </body>
 </html>

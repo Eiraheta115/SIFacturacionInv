@@ -1,6 +1,7 @@
 from django import forms
 from .models import *
 from functools import partial
+from bootstrap_datepicker_plus import DatePickerInput
 
 class ClientesForm(forms.ModelForm):
 
@@ -12,7 +13,6 @@ class ProveedoresForm(forms.ModelForm):
     class Meta:
         model = Proveedores
         fields = ('idproveedor', 'codigoprov', 'registro', 'telefono', 'email', 'nombre', 'direccion', 'dui', 'saldo')
-from .models import *
 
 class newBodegaForm(forms.ModelForm):
     class Meta:
@@ -23,6 +23,11 @@ class newBodegaForm(forms.ModelForm):
         ]
 
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
+
+class ToDoForm(forms.Form):
+    date = forms.DateField(
+        widget=DatePickerInput(format='%m/%d/%Y')
+    )
 
 class DateRangeForm(forms.Form):
     start_date = forms.DateField(widget=DateInput())

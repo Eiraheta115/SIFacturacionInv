@@ -1,22 +1,17 @@
 {% extends "index.html" %}
-
+{{ form.media }}
 {% block contenido %}
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<script>
-$(document).ready(function() {
-    $('.datepicker').datepicker();
-});
-</script>
 <br>
 <h1>Listado de ventas a consumidor final</h1>
 <br>
-<form action="{% url "FacturacionInv:getVentas" %}" method="POST">
+<form action="{% url "getVentas" %}" method="POST">
   {% csrf_token %}
   <fieldset>
     <div class="form-group row">
-      <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha de inicio:</label> {{ form.start_date }}
+      <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha de inicio:</label> {{form.start_date}}
       <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha fin:</label> {{ form.end_date }}
       <button type="submit" class="btn btn-primary">Mostrar ventas realizadas</button>
     </div>
@@ -59,4 +54,9 @@ $(document).ready(function() {
 <label for="totalExenta" class="col-sm-2 col-form-label">Total exenta:</label> {{totalExenta}}
 <label for="totalExportacion" class="col-sm-2 col-form-label">Total Exportación:</label> {{totalExportacion}}
 <label for="totalVentas" class="col-sm-2 col-form-label">Total "Ventas totales":</label> {{totalVentas}}
+<script>
+$(document).ready(function() {
+    $('.datepicker').datepicker();
+});
+</script>
 {% endblock contenido %}
