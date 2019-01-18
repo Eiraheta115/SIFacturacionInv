@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'FacturacionInv',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -76,20 +77,20 @@ WSGI_APPLICATION = 'SIFacturacionInv.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
+
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-=======
+
         #'ENGINE': 'django.db.backends.postgresql_psycopg2',
->>>>>>> 70be126d65ab7e4bcbf75e43105e87357139037d
+
         #'NAME': 'sif',
         #'USER' : 'userdb',
         #'PASSWORD' : 'sifdb',
         #'HOST': 'localhost',
         #'PORT': '5432',
-<<<<<<< HEAD
-        
+
+
         'ENGINE': 'django.db.backends.postgresql',
-=======
+
 
         #Conexión Axel
         #'NAME': 'sif',
@@ -99,7 +100,6 @@ DATABASES = {
         #'PORT': '5432',
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
->>>>>>> 70be126d65ab7e4bcbf75e43105e87357139037d
         'NAME': 'gbcmnzmn',
         'USER': 'gbcmnzmn',
         'PASSWORD': '6JI55nH33l1dUXNrGUAI0kRH3dRqM_es',
@@ -141,7 +141,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+# Use BOOTSTRAP3 if you are using Bootstrap 3
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
