@@ -7,6 +7,8 @@ from .forms import ProveedoresForm
 from .models import Clientes
 from django.forms import ModelForm
 from django.views.generic import ListView
+from django.http import HttpResponse
+import json
 import datetime
 
 # Create your views here.
@@ -25,12 +27,25 @@ def buscar(listClientes, busqueda):
 def nueva_venta(request):
 	template = "../templates/nueva_venta.html"
 
-	clientes2 = list()
-	cliente = Clientes.objects.all()
+	search_term = ''
+	search_term_1 = ''
+	productos = ''
+	cliente = ''
 
-	for cl in cliente:
-		clientes2.append(cl.nombre)
+#	clientes2 = list()
+#	cliente = Clientes.objects.all()
+#
+#	for cl in cliente:
+#		clientes2.append(cl.nombre)
 
+	#productos = Productos.objects.all()
+	if 'search' in request.GET:
+		search_term = request.GET['search']
+		productos = Productos.objects.filter(nombre__icontains=search_term)
+
+	if 'search_client' in request.GET:
+		search_term = request.GET['search_client']
+		cliente = Clientes.objects.filter(nombre__icontains=search_term_1)
 
 	if request.method == 'POST':
 		fecha = request.POST.get("fecha")
@@ -42,23 +57,41 @@ def nueva_venta(request):
 		descuento = request.POST.get("descuento")
 		anulado = request.POST.get("anulado")
 		impreso = request.POST.get("impreso")
-		buscando = request.POST.get("cliente_info")
-		search = buscando.lower()
-		idcliente = buscar(clientes2, search)
-
+		cantidad = request.POST.get("cantidad")
+		precio = request.POST.get("precio")
+		descripcion = request.POST.get("descripcionproducto")
+		#buscando = request.POST.get("cliente_info")
+		#search = buscando.lower()
+		#idcliente = buscar(clientes2, search)
+		'''
 		cf = True if request.POST.get("credito_fiscal") else False
 		if cf:
 			idfactncred = idfactura
 			# idtdoc = 1
 		else:
-			idfactncred = null
+			idfactncred = idfactura
 			# idtdoc = 2
-		fatura = Facturas(codigo=codigo, fecha=fecha, concepto=concepto, vencimiento=vencimiento,
-				total=total, exenta=exenta, descuento=descuento, anulado=anulado, impreso=impreso,
+		'''
+		# detallefactura = Detallefacturas(cantidad=cantidad, precio=precio, subtotal=subtotal, descuento=descuento,
+		#	idfactura=idfactura, idproducto=idproducto, idbodega=idbodega)
+
+		'''
+		fatura = Facturas(codigo=codigo, fecha=fecha, concepto=concepto, vencimiento=vencimiento, 
+				total=total, exenta=exenta, descuento=descuento, anulado=anulado, impreso=impreso, 
 				idtdoc=idtdoc, idcliente=idcliente, idfactncred=idfactncred)
 		factura.save()
 
+		movimiento = Movimiento(fecha=fecha, costomovimiento=costomovimiento, costopromedio=costopromedio, 
+			concepto=concepto, responsable=responsable, cantidad=cantidad, bodega1=bodega1, bodega2=bodega2,
+			codproducto=codproducto, tmov=tmov, idfactura=idfactura, idtdoctransferencia=idtdoctransferencia,
+			idlibcom=idlibcom)
+		movimiento.save()
 
+		producto = Producto(codigoprod=codigoprod, nombre=nombre, descripcion=descripcion, marca=marca, 
+			existenciamax=existenciamax, existenciamin=existenciamin, existenciaactual=existenciaactual,
+			idcategoria=idcategoria, idbodega=idbodega)
+		producto.save()
+		'''
 
 	'''
 
@@ -72,8 +105,9 @@ def nueva_venta(request):
 		existenciamax=existenciamax, existenciamin=existenciamin, idcategoria=idcategoria, idbodega=idbodega)
 	producto.save()
 	'''
+
 	context = {
-			# 'codigoprod':codigoprod, 'descripcionproducto':descripcion
+		'search_term':search_term, 'productos':productos, 'cliente': cliente,
 	}
 
 	return render(request, template, context)
@@ -95,7 +129,7 @@ def listarproductos(listp, busqueda):
 
 def prueba(request):
 	template = "../templates/busqueda.html"
-
+	'''
 	products = list()
 	productos = Productos.objects.all()
 	for p in productos:
@@ -105,10 +139,8 @@ def prueba(request):
 		search = cprod.lower()
 		cod = buscar_prod(products, search)
 		print (cod)
-		new = list()
-		new = listarproductos(products, search)
-	context = {'new':new}
-	'''
+		
+	
 	if request.method == 'POST':
 		buscar = request.POST.get("codprod")
 		prods = Productos.objects.filter(codigoprod=buscar)
@@ -125,7 +157,7 @@ def prueba(request):
 		print(idprodname)
 	'''
 
-	return render(request, template, context)
+	return render(request, template)
 
 def nueva_compra(request):
 	return render(request, "../templates/nueva_compra.html")
@@ -269,6 +301,10 @@ class ProductosList(ListView):
     model = Productos
     template_name = "../templates/productlist.html"
 
+def busqueda(request): 
+  usuario = {'nombre': 'Eduardo Ismael'} 
+  return HttpResponse( json.dumps(usuario), content_type='application/json' )
+
 def reporte_ventas(request):
     template = "../templates/reporte_ventas.html"
     fecha1 = ToDoForm()
@@ -288,3 +324,4 @@ def getVentas(request):
     ventas = Libroventascf.objects.filter(fecha__range=(f1, f2))
     context = {'ventas':ventas}
     return render(request, template, context)
+

@@ -50,6 +50,9 @@ class Clientes(models.Model):
         managed = False
         db_table = 'clientes'
 
+    def __str__(self):
+        return self.nombre
+
 
 class Correlativos(models.Model):
     idcorrelativo = models.AutoField(primary_key=True)
@@ -222,7 +225,7 @@ class Productos(models.Model):
         db_table = 'productos'
 
     def __str__(self):
-        return self.codigoprod
+        return self.nombre
 
 
 class Proveedores(models.Model):
