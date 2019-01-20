@@ -77,31 +77,6 @@ WSGI_APPLICATION = 'SIFacturacionInv.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
-=======
-
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        #'NAME': 'sif',
-        #'USER' : 'userdb',
-        #'PASSWORD' : 'sifdb',
-        #'HOST': 'localhost',
-        #'PORT': '5432',
-
-
-        'ENGINE': 'django.db.backends.postgresql',
-
-
-        #Conexión Axel
-        #'NAME': 'sif',
-        #'USER': 'postgres',
-        #'PASSWORD': 'super1234',
-        #'HOST': 'localhost',
-        #'PORT': '5432',
-
->>>>>>> 6e9b3a42cda30b07f05276fa50d70b69825bb802
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'gbcmnzmn',
         'USER': 'gbcmnzmn',

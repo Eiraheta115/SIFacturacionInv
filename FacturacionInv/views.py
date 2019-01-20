@@ -78,10 +78,6 @@ def nueva_venta(request):
 		'''
 		fatura = Facturas(codigo=codigo, fecha=fecha, concepto=concepto, vencimiento=vencimiento, 
 				total=total, exenta=exenta, descuento=descuento, anulado=anulado, impreso=impreso, 
-=======
-		fatura = Facturas(codigo=codigo, fecha=fecha, concepto=concepto, vencimiento=vencimiento,
-				total=total, exenta=exenta, descuento=descuento, anulado=anulado, impreso=impreso,
->>>>>>> f80af22208397a9957d1f46f0c8de9e3d24241ea
 				idtdoc=idtdoc, idcliente=idcliente, idfactncred=idfactncred)
 		factura.save()
 
