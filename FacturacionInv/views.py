@@ -311,7 +311,13 @@ def busqueda(request):
 
 def reporte_ventas(request):
     template = "../templates/reporte_ventas.html"
-    return render(request, template)
+    fecha1 = ToDoForm()
+    fecha2 = ToDoForm()
+    context = {
+    'form': fecha1,
+    'form': fecha2,
+    }
+    return render(request, template, context)
 
 def getVentas(request):
     template = "../templates/reporte_ventas.html"
