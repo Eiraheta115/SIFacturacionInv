@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -142,9 +144,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Use BOOTSTRAP3 if you are using Bootstrap 3
-BOOTSTRAP4 = {
-    'include_jquery': True,
-}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 

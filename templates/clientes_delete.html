@@ -1,10 +1,10 @@
-{% extends 'templates/index.html' %}
+{% extends "index.html" %}
 
 {% block contenido %}
     <div class="container">
       <form method="post">{% csrf_token %}
-        ¿Está seguro de querer eliminar a "{{ object }}" ?
-        <input class="btn btn-primary" type="submit" value="Submit" />
+        ¿Está seguro de querer eliminar a "{{ object.nombre }}" ?
+        <input class="btn btn-primary" type="submit" value="Sí" />
       </form>
     </div>
 {% endblock %}

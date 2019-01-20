@@ -211,23 +211,23 @@ def clientes_create(request, template_name='../templates/clientes_form.html'):
     form = ClientesForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('templates:clientes_list')
+        return redirect('clientes_list.html')
     return render(request, template_name, {'form': form})
 
 def clientes_update(request, pk, template_name='../templates/clientes_form.html'):
     clientes = get_object_or_404(Clientes, pk=pk)
-    form = ClientesForm(request.POST or None, instance=post)
+    form = ClientesForm(request.POST or None, instance=clientes)
     if form.is_valid():
         form.save()
-        return redirect('templates:clientes_list')
+        return redirect('clientes_list')
     return render(request, template_name, {'form': form})
 
 def clientes_delete(request, pk, template_name='../templates/clientes_delete.html'):
     clientes = get_object_or_404(Clientes, pk=pk)
     if request.method=='POST':
-        post.delete()
-        return redirect('templates:clientes_list')
-    return render(request, template_name, {'object': post})
+        clientes.delete()
+        return redirect('clientes_list.html')
+    return render(request, template_name, {'object': clientes})
 
 def proveedores_list(request, template_name='../templates/proveedores_list.html'):
     proveedores = Proveedores.objects.all()
@@ -239,23 +239,23 @@ def proveedores_create(request, template_name='../templates/proveedores_form.htm
     form = ProveedoresForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('templates:proveedores_list')
+        return redirect('proveedores_list.html')
     return render(request, template_name, {'form': form})
 
 def proveedores_update(request, pk, template_name='../templates/proveedores_form.html'):
     proveedores = get_object_or_404(Proveedores, pk=pk)
-    form = ProveedoresForm(request.POST or None, instance=post)
+    form = ProveedoresForm(request.POST or None, instance=proveedores)
     if form.is_valid():
         form.save()
-        return redirect('templates:proveedores_list')
+        return redirect('proveedores_list')
     return render(request, template_name, {'form': form})
 
 def proveedores_delete(request, pk, template_name='../templates/proveedores_delete.html'):
     proveedores = get_object_or_404(Proveedores, pk=pk)
     if request.method=='POST':
-        post.delete()
+        proveedores.delete()
         return redirect('templates:proveedores_list')
-    return render(request, template_name, {'object': post})
+    return render(request, template_name, {'object': proveedores})
 
 class BodegasList(ListView):
     model = Bodegas
