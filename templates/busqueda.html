@@ -5,41 +5,107 @@
 <br>
 <h1>Nueva Venta</h1>
 <br>
-<form method="POST">
+<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" name="search">
+      <button class="btn btn-primary" type="submit">Buscar Producto</button>
+    </form>
+  <br>
+  
+<br>
+<br>
+<form method="POST" action="#">
   {% csrf_token %}
+  <fieldset class="row">
   <fieldset>
+    
+    <!-- <table class="table table-hover" style="margin-top: 30px">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cod</th>
+        <th scope="col">Descrpción</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">Accion</th>   
+      </tr>
+      </thead>
+      <tbody>
+      {% if productos %}
+      {% for p in productos %}
+      <tr class="table-active">
+        <th scope="row">{{ p.nombre }}</th>
+        <td>{{ p.codigoprod }}</td>
+        <td>{{ p.descripcion }}</td>
+        <td><input type="number" class="form-control" id="cantidad" placeholder="0"></td>
+        <td><input type="number" class="form-control" id="precio_unit" placeholder="0.00"></td>
+        <td><button class="btn btn-primary" type="submit" class="principal" id="add_row">Agregar Producto</button></td>
+        # comentar <input type="button" value="Agregar" class="principal" id="add_row"/> 
+        <td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h4>No hay registros</h4>
+      {% endif %}
+      </tbody>
+      </table> -->
+
     <div class="form-group row">
       <div class="col-sm-5">
-        <label for="codprod">Codigo del producto: </label>
-        <input type="text" class="form-control" name="codprod" id="codprod" placeholder="Codigo">
-        <br>
-        <br>
-        <button type="submit" class="btn btn-primary">Buscar Producto</button>
-        <br>
-        <br>
+        <label for="descripcion">Descripción: </label>
+        <input type="text" class="form-control" id="descripcionproducto" placeholder="Descripción">
+        <label for="cantidad">Cantidad: </label>
+        <input type="text" class="form-control" id="cantidad" placeholder="0">
+        <button class="btn btn-primary" type="submit" class="principal" onClick="addNewRow(event)">Agregar Producto</button>
       </div>
+      
+    </div>
+    <br>
+    <br>
+        <div class="table-wrapper">
+          <table id="tabla_factura" class="table table-hover">
+            <thead>
+            <tr >
+              <th>Cantidad</th>
+              <th>Descripción</th>
 
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <td>Codigo</td>
-            <td>Nombre</td>
-          </tr>
-        </thead>
-        <tbody>
-          {% if new %}
-          {% for n in new %}
-          <tr>
-            <td>{{ n.codigoprod }}</td>
-            <td>{{ n.nombre }}</td>
-          </tr>
-          {% endfor %}
-          {% else %}
-          <h1>no</h1>
-          {% endif %}
-        </tbody>
-      </table>
-  </fieldset>
+            </tr>
+            </thead>
+            <tbody id="content_table">
+            <tr>
+              <td></td>
+              <td></td>
+              </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="1"></td>
+              <td id="total_subtotales">0.00</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+  </fieldset> 
+</fieldset>
+
+<script type="text/javascript">
+  function addNewRow(){
+    var descripcionproducto = document.getElementById("descripcionproducto").value;
+    var cantidad = document.getElementById("cantidad").value;
+
+    // obtenemos acceso a la tabla por su ID
+    var TABLE = document.getElementById("tabla_factura");
+
+    var row = TABLE.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    
+
+    cell1.innerHTML = descripcion;
+    cell2.innerHTML = cantidad;
+  
+}
+
+</script>
 
 
 {% endblock contenido %}

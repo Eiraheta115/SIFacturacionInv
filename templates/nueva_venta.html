@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block title %}
-      <title>Nueva</title>
+      <title>Nueva Venta</title>
 {% endblock title %}
 
 {% block contenido %}
@@ -10,50 +10,13 @@
 <h1>Nueva Venta</h1>
 <br>
 
-
+    <!--BUSCAR EL CLIENTE-->
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" name="search">
-      <button class="btn btn-primary" type="submit">Buscar Producto</button>
+    <input class="form-control mr-sm-2" type="text" placeholder="Buscar" name="search_client">
+    <button class="btn btn-primary" type="submit">Buscar Cliente</button>
     </form>
-
+  <br>
   <table class="table table-hover" style="margin-top: 30px">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Cod</th>
-        <th scope="col">Descrpción</th>
-        <th scope="col">Cantidad</th>
-        <th scope="col">Precio Unitario</th>
-        <th scope="col">Accion</th>   
-      </tr>
-    </thead>
-    <tbody>
-      {% if productos %}
-      {% for p in productos %}
-      <tr class="table-active">
-        <th scope="row">{{ p.nombre }}</th>
-        <td>{{ p.codigoprod }}</td>
-        <td>{{ p.descripcion }}</td>
-        <td><input type="number" class="form-control" id="cantidad" placeholder="0"></td>
-        <td><input type="number" class="form-control" id="precio_unit" placeholder="0.00"></td>
-        <td><button class="btn btn-primary" type="submit">Agregar Producto</button></td>
-      </tr>
-      {% endfor %}
-      {% else %}
-      <h3>No hay registros</h3>
-      {% endif %}
-    </tbody>
-  </table>
-
-
-  <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" name="search_client">
-      <button class="btn btn-primary" type="submit">Buscar Cliente</button>
-    </form>
-
-
-
-<table class="table table-hover" style="margin-top: 30px">
     <thead>
       <tr>
         <th scope="col">Cod</th>
@@ -73,15 +36,57 @@
       </tr>
       {% endfor %}
       {% else %}
-      <h3>No hay registros</h3>
+      <h4>No hay registros</h4>
       {% endif %}
     </tbody>
   </table>
-
-<form method="POST">
+  <br>
+  <br>
+  <br>
+  <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" name="search">
+      <button class="btn btn-primary" type="submit">Buscar Producto</button>
+    </form>
+  <br>
+  
+<br>
+<br>
+<form method="POST" action="#">
+  {% csrf_token %}
   <fieldset class="row">
   <fieldset>
     
+    <table class="table table-hover" style="margin-top: 30px">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cod</th>
+        <th scope="col">Descrpción</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio Unitario</th>
+        <th scope="col">Accion</th>   
+      </tr>
+      </thead>
+      <tbody>
+      {% if productos %}
+      {% for p in productos %}
+      <tr class="table-active">
+        <th scope="row">{{ p.nombre }}</th>
+        <td>{{ p.codigoprod }}</td>
+        <td>{{ p.descripcion }}</td>
+        <td><input type="number" class="form-control" id="cantidad" placeholder="0"></td>
+        <td><input type="number" class="form-control" id="precio_unit" placeholder="0.00"></td>
+        <td><button class="btn btn-primary" type="submit" class="principal" id="add_row">Agregar Producto</button></td>
+        <!--<input type="button" value="Agregar" class="principal" id="add_row"/> -->
+        <td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <h4>No hay registros</h4>
+      {% endif %}
+      </tbody>
+      </table>
+
     <div class="form-group row">
       <div class="col-sm-5">
         <label for="descripcion">Descripción: </label>
@@ -96,6 +101,38 @@
         <input type="text" class="form-control" name="fecha" id="fecha" placeholder="Fecha">
       </div>
     </div>
+    <br>
+    <br>
+        <div class="table-wrapper">
+          <table id="tabla_factura" class="table table-hover">
+            <thead>
+            <tr>
+              <th>Codigo</th>
+              <th>Cantidad</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Subtotal</th>
+              <td>Acción</td>
+            </tr>
+            </thead>
+            <tbody id="content_table">
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="4"></td>
+              <td id="total_subtotales">0.00</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
   </fieldset> 
 </fieldset>
 
@@ -113,6 +150,10 @@
     </div>
 </fieldset>
 
+<div class="custom-control custom-radio">
+      <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
+      <label class="custom-control-label" for="customRadio1">CRÉDITO FISCAL</label>
+</div>
 <fieldset style="margin-top: 30px">
   <h4>Crédito Fiscal</h4>
   <div class="form-group row" >
@@ -132,7 +173,11 @@
     </div>
 </fieldset>
 
-<fieldset style="margin-top: 30px">
+<div class="custom-control custom-radio">
+      <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+      <label class="custom-control-label" for="customRadio2">FACTURA</label>
+</div>
+<fieldset style="margin-top: 30px" >
   <h4>Factura</h4>
   <div class="form-group row" >
       <div class="col-sm-5">
@@ -146,5 +191,15 @@
     </div>
 </fieldset>
 </form>
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+<script src="lib/js/invoice.js"></script>
 
 {% endblock contenido %}
