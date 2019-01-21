@@ -27,9 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-BOOTSTRAP4 = {
-    'include_jquery': True,
-}
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'FacturacionInv',
-    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +117,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Use BOOTSTRAP3 if you are using Bootstrap 3
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

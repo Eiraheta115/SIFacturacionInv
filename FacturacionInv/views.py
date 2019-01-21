@@ -76,18 +76,18 @@ def nueva_venta(request):
 		#	idfactura=idfactura, idproducto=idproducto, idbodega=idbodega)
 
 		'''
-		fatura = Facturas(codigo=codigo, fecha=fecha, concepto=concepto, vencimiento=vencimiento, 
-				total=total, exenta=exenta, descuento=descuento, anulado=anulado, impreso=impreso, 
+		fatura = Facturas(codigo=codigo, fecha=fecha, concepto=concepto, vencimiento=vencimiento,
+				total=total, exenta=exenta, descuento=descuento, anulado=anulado, impreso=impreso,
 				idtdoc=idtdoc, idcliente=idcliente, idfactncred=idfactncred)
 		factura.save()
 
-		movimiento = Movimiento(fecha=fecha, costomovimiento=costomovimiento, costopromedio=costopromedio, 
+		movimiento = Movimiento(fecha=fecha, costomovimiento=costomovimiento, costopromedio=costopromedio,
 			concepto=concepto, responsable=responsable, cantidad=cantidad, bodega1=bodega1, bodega2=bodega2,
 			codproducto=codproducto, tmov=tmov, idfactura=idfactura, idtdoctransferencia=idtdoctransferencia,
 			idlibcom=idlibcom)
 		movimiento.save()
 
-		producto = Producto(codigoprod=codigoprod, nombre=nombre, descripcion=descripcion, marca=marca, 
+		producto = Producto(codigoprod=codigoprod, nombre=nombre, descripcion=descripcion, marca=marca,
 			existenciamax=existenciamax, existenciamin=existenciamin, existenciaactual=existenciaactual,
 			idcategoria=idcategoria, idbodega=idbodega)
 		producto.save()
@@ -139,8 +139,8 @@ def prueba(request):
 		search = cprod.lower()
 		cod = buscar_prod(products, search)
 		print (cod)
-		
-	
+
+
 	if request.method == 'POST':
 		buscar = request.POST.get("codprod")
 		prods = Productos.objects.filter(codigoprod=buscar)
@@ -301,14 +301,14 @@ class ProductosList(ListView):
     model = Productos
     template_name = "../templates/productlist.html"
 
-def busqueda(request): 
-  usuario = {'nombre': 'Eduardo Ismael'} 
+def busqueda(request):
+  usuario = {'nombre': 'Eduardo Ismael'}
   return HttpResponse( json.dumps(usuario), content_type='application/json' )
 
 def reporte_ventas(request):
     template = "../templates/reporte_ventas.html"
-    fecha1 = ToDoForm()
-    fecha2 = ToDoForm()
+    fecha1 = DateRangeForm()
+    fecha2 =DateRangeForm()
     context = {
     'form': fecha1,
     'form': fecha2,
@@ -324,4 +324,3 @@ def getVentas(request):
     ventas = Libroventascf.objects.filter(fecha__range=(f1, f2))
     context = {'ventas':ventas}
     return render(request, template, context)
-

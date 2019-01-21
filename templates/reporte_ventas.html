@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {{ form.media }}
 {% block contenido %}
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
 <br>
 <h1>Listado de ventas a consumidor final</h1>
 <br>
@@ -10,8 +10,8 @@
   <fieldset>
     <div class="form-group row">
       <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha de inicio:</label> {{form.start_date}}
-      <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha fin:</label> {{ form.end_date }}
-      <button type="submit" class="btn btn-primary">Mostrar ventas realizadas</button>
+      <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha fin:</label> {{ form.end_date }}<br>
+      <br> <button type="submit" class="btn btn-primary">Mostrar ventas realizadas</button>
     </div>
   </fieldset>
 </form>
@@ -52,9 +52,4 @@
 <label for="totalExenta" class="col-sm-2 col-form-label">Total exenta:</label> {{totalExenta}}
 <label for="totalExportacion" class="col-sm-2 col-form-label">Total Exportación:</label> {{totalExportacion}}
 <label for="totalVentas" class="col-sm-2 col-form-label">Total "Ventas totales":</label> {{totalVentas}}
-<script>
-$(document).ready(function() {
-    $('.datepicker').datepicker();
-});
-</script>
 {% endblock contenido %}

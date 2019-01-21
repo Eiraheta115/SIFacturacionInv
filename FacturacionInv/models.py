@@ -262,3 +262,7 @@ class Tipomovimientos(models.Model):
     class Meta:
         managed = False
         db_table = 'tipomovimientos'
+
+class Event(models.Model):
+    start_date=models.DateField(blank=False)
+    end_date=models.DateField(blank=False,)
