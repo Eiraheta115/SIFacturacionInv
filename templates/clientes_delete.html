@@ -1,5 +1,9 @@
 {% extends "index.html" %}
 
+{% block title %}
+      <title>Eliminar</title>
+{% endblock title %}
+
 {% block contenido %}
     <div class="container">
       <form method="post">{% csrf_token %}

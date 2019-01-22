@@ -1,7 +1,11 @@
 {% extends "index.html" %}
 
-{% block contenido %}
+{% block title %}
+      <title>Nuevo proveedor</title>
+{% endblock title %}
 
+{% block contenido %}
+<h1>Nuevo proveedor</h1>
     <div class="container">
       <form  method="post">{% csrf_token %}
         {{ form.as_p }}
