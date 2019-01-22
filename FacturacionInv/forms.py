@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
 from functools import partial
-from bootstrap_datepicker_plus import DatePickerInput
 
 class ClientesForm(forms.ModelForm):
 
