@@ -318,9 +318,34 @@ def reporte_ventas(request):
 def getVentas(request):
     template = "../templates/reporte_ventas.html"
     if request.method == 'POST':
-        f1 = DateRangeForm(request.POST.get("start_date"))
-        f2 = DateRangeForm(request.POST.get("end_date"))
+        f1 = request.POST.get("start_date")
+        f2 = request.POST.get("end_date")
 
     ventas = Libroventascf.objects.filter(fecha__range=(f1, f2))
     context = {'ventas':ventas}
+    return render(request, template, context)
+
+def reporte_facturas(request):
+    template = "../templates/reporte_facturas.html"
+    fecha1 = DateRangeForm()
+    fecha2 =DateRangeForm()
+    context = {
+    'form': fecha1,
+    'form': fecha2,
+    }
+    return render(request, template, context)
+
+def getFacturas(request):
+    template = "../templates/reporte_facturas.html"
+    fecha1 = DateRangeForm()
+    fecha2 =DateRangeForm()
+    if request.method == 'POST':
+        f1 = request.POST.get("start_date")
+        f2 = request.POST.get("end_date")
+
+    facturas = Facturas.objects.filter(fecha__range=(f1, f2))
+
+    context = {'facturas':facturas,
+    'form': fecha1,
+    'form': fecha2,}
     return render(request, template, context)

@@ -2,22 +2,22 @@
 {{ form.media }}
 
 {% block title %}
-      <title>Reporte de ventas</title>
+      <title>Reporte de facturas</title>
 {% endblock title %}
 
 {% block contenido %}
 
 <br>
-<h1>Listado de ventas a consumidor final</h1>
+<h1>Listado de facturas</h1>
 <br>
-<form action="{% url "getVentas" %}" method="POST">
+<form action="{% url "getFacturas" %}" method="POST">
   {% csrf_token %}
   <fieldset>
     <div class="form-group row">
       <label for="fecha_inicio" class="col-sm-2 col-form-label">Fecha de inicio:</label> {{form.start_date}}
       <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha fin:</label> {{ form.end_date }}
       <br>
-      <button type="submit" class="btn btn-primary">Mostrar ventas realizadas</button>
+      <button type="submit" class="btn btn-primary">Mostrar facturas</button>
     </div>
   </fieldset>
 </form>
@@ -26,29 +26,35 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">Código</th>
       <th scope="col">Fecha</th>
-      <th scope="col">Exenta</th>
-      <th scope="col">Afecta</th>
-      <th scope="col">Exportación</th>
-      <th scope="col">ID factura</th>
       <th scope="col">Total</th>
+      <th scope="col">Exenta</th>
+      <th scope="col">Vencimiento</th>
+      <th scope="col">Descuento</th>
+      <th scope="col">Anulado</th>
+      <th scope="col">Impreso</th>
+      <th scope="col">ID Cliente</th>
     </tr>
   </thead>
   <tbody>
-    {% if ventas %}
-    {% for v in ventas %}
+    {% if facturas %}
+    {% for f in facturas %}
     <tr>
-      <td>{{v.idlibvencf}}</td>
-      <td>{{v.fecha}}</td>
-      <td>{{v.exenta}}</td>
-      <td>{{v.afecta}}</td>
-      <td>{{v.exportacion}}</td>
-      <td>{{v.facturas_idfactura}}</td>
-      <td>{{v.total}}</td>
+      <td>{{f.idfactura}}</td>
+      <td>{{f.codigo}}</td>
+      <td>{{f.fecha}}</td>
+      <td>{{f.total}}</td>
+      <td>{{f.exenta}}</td>
+      <td>{{f.vencimiento}}</td>
+      <td>{{f.descuento}}</td>
+      <td>{{f.anulado}}</td>
+      <td>{{f.impreso}}</td>
+      <td>{{f.idcliente}}</td>
     </tr>
     {% endfor %}
     {% else %}
-    <h1>Aún no hay ventas realizadas.</h1>
+    <h1>Aún no hay facturas.</h1>
     {% endif %}
   </tbody>
 </table>
@@ -56,6 +62,5 @@
 <br> <br>
 
 <label for="totalExenta" class="col-sm-2 col-form-label">Total exenta:</label> {{totalExenta}}
-<label for="totalExportacion" class="col-sm-2 col-form-label">Total Exportación:</label> {{totalExportacion}}
 <label for="totalVentas" class="col-sm-2 col-form-label">Total "Ventas totales":</label> {{totalVentas}}
 {% endblock contenido %}

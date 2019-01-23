@@ -265,4 +265,4 @@ class Tipomovimientos(models.Model):
 
 class Event(models.Model):
     start_date=models.DateField(blank=False)
-    end_date=models.DateField(blank=False,)
+    end_date=models.DateField(blank=False)
